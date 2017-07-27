@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+# Copyright © 2017 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
+'''
+Python http.server wrapped in TLS
+'''
+
+import os
+import ssl
+import argparse
+import http.server
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('addr')
+    ap.add_argument('port', type=int)
+    options = ap.parse_args()
+    httpd = http.server.HTTPServer(
+        (options.addr, options.port),
+        http.server.SimpleHTTPRequestHandler
+    )
+    certfile = os.path.dirname(__file__) + '/cert.pem'
+    httpd.socket = ssl.wrap_socket(
+        httpd.socket,
+        certfile=certfile,
+        server_side=True
+    )
+    (addr, port) = httpd.socket.getsockname()
+    print('{prog}: listening on {addr}, port {port}'.format(prog=ap.prog, addr=addr, port=port))
+    httpd.serve_forever()
+
+if __name__ == '__main__':
+    main()
+
+# vim:ts=4 sts=4 sw=4 et
