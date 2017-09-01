@@ -22,6 +22,7 @@ def main():
         http.server.SimpleHTTPRequestHandler
     )
     certfile = os.path.dirname(__file__) + '/cert.pem'
+    os.stat(certfile)
     httpd.socket = ssl.wrap_socket(
         httpd.socket,
         certfile=certfile,
