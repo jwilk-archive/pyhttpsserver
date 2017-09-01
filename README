@@ -1,0 +1,15 @@
+.. code:: console
+
+   $ pyhttpsserver localhost 8765
+   pyhttpsserver: listening on 127.0.0.1, port 8765
+
+   ⋮
+
+   $ wget -nv --no-check-certificate https://localhost:8765/
+   WARNING: The certificate of ‘localhost’ is not trusted.
+   WARNING: The certificate of ‘localhost’ hasn't got a known issuer.
+   WARNING: The certificate of ‘localhost’ was signed using an insecure algorithm.
+   The certificate's owner does not match hostname ‘localhost’
+   2017-09-01 13:16:43 URL:https://localhost:8765/ [592/592] -> "index.html" [1]
+
+.. vim:ft=rst ts=3 sts=3 sw=3 et
