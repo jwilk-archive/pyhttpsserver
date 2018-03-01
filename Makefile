@@ -1,6 +1,8 @@
 # Copyright © 2017 Jakub Wilk <jwilk@jwilk.net>
 # SPDX-License-Identifier: MIT
 
+export HOME = /nonexistent
+
 .PHONY: all
 all: cert.pem
 
