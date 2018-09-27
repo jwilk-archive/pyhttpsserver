@@ -7,7 +7,7 @@ export HOME = /nonexistent
 all: cert.pem
 
 cert.pem:
-	umask 0077 && openssl req -x509 -newkey rsa:2048 -nodes -batch -subj '/CN=invalid/' -keyout $(@) -out $(@)
+	umask 0077 && openssl req -x509 -newkey rsa:2048 -days 365 -nodes -batch -subj '/CN=invalid/' -keyout $(@) -out $(@)
 
 .PHONY: clean
 clean:
